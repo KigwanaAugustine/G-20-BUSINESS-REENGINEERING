@@ -20,7 +20,9 @@ public class Customer
     private String gender;
     private String location;
     private String cEmail;
-    
+     private String cPassword;
+    private String cUserName;
+   
     public Customer(int customerID, String cFname, String cLname, String gender, String location, String cEmail, String cPassword, String cUserName) {
         this.customerID = customerID;
         this.cFname = cFname;
@@ -35,7 +37,6 @@ public class Customer
 
     public Customer() {
     }
-    private String cPassword;
-    private String cUserName;
+   
            
 }
