@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -93,5 +94,30 @@ public class CustomerDao
         
         
         return customerID;
+    }
+    
+     public ArrayList<Customer> getCustomers() throws SQLException
+    {
+        ArrayList<Customer> customers = new ArrayList<>();
+        Customer customer = new Customer();
+        
+        sql = "SELECT * FROM `shirt-yoo`.customer";
+        Statement stmt = con.createStatement(); 
+        ResultSet rs = stmt.executeQuery(sql);
+        
+        while(rs.next())
+        {
+            customer.setCustomerID(rs.getInt(1));
+            customer.setCFname(rs.getString(2));
+            customer.setCLname(rs.getString(3));
+            customer.setGender(rs.getString(4));
+            customer.setLocation(rs.getString(5));
+            customer.setCEmail(rs.getString(6));
+            
+          
+            customers.add(customer);
+        }
+           
+        return customers;
     }
 }
