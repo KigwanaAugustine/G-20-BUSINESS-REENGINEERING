@@ -1,79 +1,88 @@
-<%-- 
+<%--
     Document   : index
-    Created on : Jul 25, 2022, 9:09:30 AM
-    Author     : Tanuki
+    Created on : 5 Aug 2022, 09:34:07
+    Author     : Duku Allan
 --%>
 
+<%@page import="java.lang.Integer"%>
+<%@page import="java.util.*"%>
+<%@page import="shoppingpackage.dao.ShirtDao"%>
+<%@page import="shoppingpackage.connection.DbCon"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="shoppingpackage.model.*" %>
 
+<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
-<%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page errorPage = "errors.jsp"%>
-<%@taglib prefix = "sql" uri = "http://java.sun.com/jsp/jstl/sql" %>
-<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%
+    session = request.getSession();
+    int customerID = 0;
+    
+    if(session.getAttribute("customerID") != null)
+      customerID = (int)session.getAttribute("customerID");
+    
+    String username = (String) session.getAttribute("username");
+    
+    //preventing reloggin in with backbutton
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Expires", "0");
+    
+    
+   
+    
+    DbCon db = new DbCon();
+    ShirtDao sh = new ShirtDao();
+    List<Shirt> shirts = sh.getAllShirts();
+    
+    //order-now?quantity=1&id=<%=s.getShirtID()
+    
+    ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+        if(cart_list != null){
+            request.setAttribute("cart_list", cart_list);
+        }
+//<%= s.getImage();
+%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>home</title>
+        <%@include file="includes/head.jsp"  %>
     </head>
-    
     <body>
-        
-        
-        
-        
-        <form action="regLike" method = "post">
-            
-            <input type ="text"  name="shirtID"> <br><br>
-            
-<!--            <input type ="text"  name="dailyNumShirts"> <br><br>
-           
-            <input type="text"  name="dailyNumStaff"> <br><br>-->
-           
-<!--            <input type="text"  name="address"> <br><br>
-            
-            <input type="text"  name="salary"> <br><br>
-            
-            <input type="text"  name="sEmail"> <br><br>
-           
-            <input type="text"  name="managerID"> <br><br>-->
-            
-            
-            <input type ="submit" value="submit" >
-        </form>
-        
-        <% String username = (String) session.getAttribute("username");
-            out.print(username);
-        %>
-
-        <%--
-        //JSTL FUNCTION TAGS
-        
-        <c:set var="str" value="Kigwana is the real king." />
-        
-        Length : ${fn:length(str)}
-        
-        <c:forEach items = "{fn:split(str, ' ')}" var="s">
-            <br>
-            ${s}
-        </c:forEach>  --%>
-        
-        
-        <%--
-        JSTL TAGS DB CONNECTION
-        <sql:setDataSource var="db" driver="org.gjt.mm.mysql.Driver" url="jbdc:mysql://localhost:3306/test" user="root" password="@Tanuki12broz"/>
-        
-        <sql:query dataSource="${db}" var="rs" > 
-            SELECT * from employees; 
-        </sql:query>
-        
-        <c:forEach var="employee" items="${rs.rows }">
-        ${employee.Name}
-        </c:forEach>   --%>
-                   
-       
+        <%@include file="includes/navbar.jsp"  %>
+                
+        <div class="container">
+               <div class="card-header my-3">All Products</div>
+                    <div class="row">
+                     <%
+                            PrintWriter out1 = response.getWriter();
+                            if( !shirts.isEmpty()){
+                                for(Shirt s:shirts){%>
+                                <div class="col-md-3 my-3">
+                                   <div class="card w-100" style="width: 18rem;">
+                                        <img class="card-img-top" src="product-images/<%= s.getImage()%>" alt="Card image cap">
+                                         <div class="card-body">
+                                                <h5 class="card-title"><%= s.getDescription() %></h5>
+                                                <h6 class="price">Price: $<%= s.getPrice() %></h6>
+                                                <h6 class="category">Category: <%= s.getShirtCategoryName() %></h6>
+                                                <div class="mt-3 d-flex justify-content-between">
+                                                    <a href="add-to-cart?shirtID=<%= s.getShirtID() %>" class="btn btn-dark">Add to Cart</a>
+                                                    <a href="regLike" class="btn btn-primary">Like</a>
+                                                    
+                                                    
+                                             </div>
+                                        </div>
+                                    </div>
+                             </div> 
+                                    
+                             <%   }
+                            }
+                        %>
+                        
+                </div>           
+        </div>
+    
+        <%@include file="includes/footer.jsp"  %>
     </body>
 </html>
