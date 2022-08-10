@@ -46,7 +46,7 @@ public class CustomerReg extends HttpServlet
             out.println(ex.getMessage());
         }
        
-       
+       response.sendRedirect("login.jsp");
        
         
     }

@@ -7,6 +7,9 @@
 //import com.August.DBConnection;
 //import com.August.entities.Shirt;
 //import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
 //
 ///**
 // *
@@ -18,9 +21,28 @@
 //    Connection con = db.getConnection();
 //    String sql = null;
 //    
-//    public void register(Shirt shirt)
+//    public void register(Shirt shirt) throws SQLException
 //    {
-//        sql = "";
+//        sql = "SELECT * FROM `shirt-yoo`.shirt";
+//        
+//        PreparedStatement pstmt = con.prepareStatement(sql);
+//        
+//        ResultSet rs = pstmt.executeQuery();
+//        
+//        while(rs.next()){
+//                shoppingpackage.model.Shirt row = new shoppingpackage.model.Shirt();
+//                row.setShirtID(rs.getInt("shirtID"));
+//                row.setPrice(rs.getDouble("price"));
+//                row.setImage(rs.getString("image"));
+//                row.setCategoryName(rs.getString("categoryName"));
+//                row.setDescription(rs.getString("description"));
+//                 
+//                shirts.add(row);
+//            }
+//        }catch(Exception e){
+//           System.out.println(e.getMessage());
+//        }
+//        return shirts;
 //    }
 //}
 //
