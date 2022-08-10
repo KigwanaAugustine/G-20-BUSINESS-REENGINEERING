@@ -1,5 +1,5 @@
 
-package shoppingpackage.connection;
+package DukuShoppingPackage.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

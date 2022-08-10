@@ -1,5 +1,5 @@
 
-package shoppingpackage.servlet;
+package DukuShoppingPackage.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import shoppingpackage.model.Cart;
+import DukuShoppingPackage.model.Cart;
 
 /**
  *

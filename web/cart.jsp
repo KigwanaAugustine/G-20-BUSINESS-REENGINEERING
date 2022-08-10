@@ -5,10 +5,10 @@
 --%>
 <%@page import="java.util.*" %>
 <%@page import="java.text.*" %>
-<%@page import="shoppingpackage.connection.DbCon" %>
-<%@page import="shoppingpackage.dao.ShirtDao" %>
+<%@page import="DukuShoppingPackage.connection.DbCon" %>
+<%@page import="DukuShoppingPackage.dao.ShirtDao" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="shoppingpackage.model.*" %>
+<%@page import="DukuShoppingPackage.model.*" %>
 <%@page errorPage = "errors.jsp"%>
 <%
     //Preventing loging back in with the back button
@@ -18,16 +18,19 @@
     
     DecimalFormat dcf = new DecimalFormat("#.##");
     request.setAttribute("dcf", dcf);
-    CustomerModel auth = (CustomerModel) request.getSession().getAttribute("auth");
-    if(auth != null ){
-        request.setAttribute("auth", auth);
-//        response.sendRedirect("index.jsp");
-    }
+     session = request.getSession();
+    int customerID = 0;
+    
+    if(session.getAttribute("customerID") != null)
+      customerID = (int)session.getAttribute("customerID");
+    
+    String username = (String) session.getAttribute("username");
+   
     
     ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
     List<Cart> cartShirt = null;
     if(cart_list != null){
-        DbCon db = new DbCon();
+
         ShirtDao sh = new ShirtDao();
         cartShirt = sh.getCartShirts(cart_list);
         request.setAttribute("cart_list", cart_list);
@@ -56,7 +59,7 @@
         
         <div class="container">
             <div class="d-flex py-3 "><h3>Total Price: $ ${ (total>0)?dcf.format(total):0 }</h3>
-                <a class="mx-3 btn btn-primary" href="check-out">Check Out</a>
+                <a class="mx-3 btn btn-primary" href="check-out?">Check Out</a>
             </div>
             <table class="table table-loght">
               <thead>
@@ -77,7 +80,7 @@
                                     <td><%=c1.getShirtCategoryName() %></td>
                                     <td>$<%=dcf.format(c1.getPrice())%></td>
                                     <td>
-                                            <form action="order-now" method="post" class="form-inline">
+                                            <form action="order-now"  class="form-inline">
                                                 <input type="hidden" name="id" value="<%= c1.getShirtID() %>" class="form-input">
                                                 <div class="form-group d-flex justify-content-between w-50">
                                                     <a class="btn btn-sm btn-decre" href="quantity-change?action=dec&id=<%= c1.getShirtID()%>"><i class="fas fa-minus-square"></i></a>

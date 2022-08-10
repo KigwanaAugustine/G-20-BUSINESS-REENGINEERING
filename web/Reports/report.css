@@ -1,0 +1,31 @@
+.container{
+   
+    margin:0;
+    padding:10px;
+}
+.charts{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #fff;
+    grid-gap:10px;
+    width:100%;
+    padding:20px;
+    padding-top: 0;
+    margin-right: 20px;  
+}
+.chart{
+    padding:20px;
+    border-radius:10px
+}
+.inner{
+    background-color: #fff;
+    border-radius: 10px;
+    padding:20px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+}
+@media(max-width:880px){
+    .charts{
+        grid-template-columns: 1fr;
+        
+    }
+}

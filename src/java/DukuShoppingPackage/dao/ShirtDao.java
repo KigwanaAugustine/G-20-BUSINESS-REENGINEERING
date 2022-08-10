@@ -1,5 +1,5 @@
 
-package shoppingpackage.dao;
+package DukuShoppingPackage.dao;
 
 import com.August.DBConnection;
 import java.sql.Connection;
@@ -7,8 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import shoppingpackage.model.Cart;
-import shoppingpackage.model.Shirt;
+import DukuShoppingPackage.model.Cart;
+import DukuShoppingPackage.model.Shirt;
 
 /**
  *
@@ -52,7 +52,7 @@ public class ShirtDao {
             if(cartList.size()>0){
                 for(Cart item:cartList){
                     query = "select * from shirt where shirtID=?";
-                    pst = this.con.prepareStatement(query);
+                    pst = con.prepareStatement(query);
                     pst.setInt(1, item.getShirtID());
                     rs = pst.executeQuery();
                     while(rs.next()){
@@ -60,7 +60,7 @@ public class ShirtDao {
                          row.setShirtID(rs.getInt("shirtID"));
                          row.setDescription(rs.getString("description"));
                          row.setPrice(rs.getDouble("price")*item.getQuantity());
-                         row.setShirtCategoryName(rs.getString("categoryName"));
+                         row.setShirtCategoryName(rs.getString("shirtCategoryName"));
 //                         row.setQuantity(rs.getInt("quantity"));
                          shirts.add(row);
                     }

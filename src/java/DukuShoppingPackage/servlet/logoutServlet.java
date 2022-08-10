@@ -1,5 +1,5 @@
 
-package shoppingpackage.servlet;
+package DukuShoppingPackage.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

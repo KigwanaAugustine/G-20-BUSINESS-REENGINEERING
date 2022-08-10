@@ -1,5 +1,5 @@
 
-package shoppingpackage.servlet;
+package DukuShoppingPackage.servlet;
 
 
 import java.io.IOException;
@@ -10,9 +10,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
-import shoppingpackage.connection.DbCon;
-import shoppingpackage.dao.CustomerDao;
-import shoppingpackage.model.CustomerModel;
+import DukuShoppingPackage.connection.DbCon;
+import DukuShoppingPackage.dao.CustomerDao;
+import DukuShoppingPackage.model.CustomerModel;
 
 
 /**

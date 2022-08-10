@@ -18,37 +18,34 @@
         
         <div class="container">
             <div class="card w-50 mx-auto my-5">
-                <div class="card-header text -center">Customer Register</div>
+                <div class="card-header text -center">Register Staff</div>
                 <div class="card-body">
-                    <form action="cReg" method="post">
+                    <form action="sReg" method="post">
                         <div class ="form-group">
                             <div class ="form-group">
                             <label>First Name</label>
-                            <input type="text" class="form-control" name="cFname" placeholder="f name" required>
+                            <input type="text" class="form-control" name="sFname" placeholder="f name" required>
                         </div>
                         <div class ="form-group">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" name="cLname" placeholder="l name" required>
+                            <input type="text" class="form-control" name="sLname" placeholder="l name" required>
                         </div>
                             <label>Gender</label>
                             <input type="text" class="form-control" name="gender" placeholder="gender" required>
                         </div>
                         <div class ="form-group">
-                            <label>Location</label>
-                            <input type="text" class="form-control" name="location" placeholder="location" required>
+                            <label>Address</label>
+                            <input type="text" class="form-control" name="address" placeholder="Address" required>
                         </div>
                         <div class ="form-group">
-                            <label>Email Address</label>
-                            <input type="email" class="form-control" name="cEmail" placeholder="Enter Your Email" required>
+                            <label>Salary</label>
+                            <input type="number" class="form-control" name="salary" placeholder="Enter staff salary" required>
                         </div>
                         <div class ="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="cPassword" placeholder="*****" required>
+                            <label>Email</label>
+                            <input type="email" class="form-control" name="sEmail" placeholder="Email" required>
                         </div>
-                        <div class ="form-group">
-                            <label>Username</label>
-                            <input type="text" class="form-control" name="cUserName" placeholder="Enter your username" required>
-                        </div>
+                       
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Register</button>
                         </div> 

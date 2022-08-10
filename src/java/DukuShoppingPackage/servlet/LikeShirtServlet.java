@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package shoppingpackage.servlet;
+package DukuShoppingPackage.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,9 +12,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import shoppingpackage.connection.DbCon;
-import shoppingpackage.dao.LikeShirtDao;
-import shoppingpackage.model.LikeShirt;
+import DukuShoppingPackage.connection.DbCon;
+import DukuShoppingPackage.dao.LikeShirtDao;
+import DukuShoppingPackage.model.LikeShirt;
 
 /**
  *

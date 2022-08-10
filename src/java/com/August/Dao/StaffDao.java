@@ -38,7 +38,7 @@ public class StaffDao
         pstmt.setString(4, staff.getAddress());
         pstmt.setDouble(5, staff.getSalary());
         pstmt.setString(6, staff.getSEmail());
-        pstmt.setInt(7, staff.getManagerID());
+        pstmt.setInt(7, 101);
        
          int rowAffected = pstmt.executeUpdate();
     }

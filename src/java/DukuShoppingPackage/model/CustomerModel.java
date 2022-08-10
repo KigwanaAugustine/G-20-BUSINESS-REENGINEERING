@@ -1,5 +1,5 @@
 
-package shoppingpackage.model;
+package DukuShoppingPackage.model;
 
 /**
  *

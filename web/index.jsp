@@ -6,10 +6,10 @@
 
 <%@page import="java.lang.Integer"%>
 <%@page import="java.util.*"%>
-<%@page import="shoppingpackage.dao.ShirtDao"%>
-<%@page import="shoppingpackage.connection.DbCon"%>
+<%@page import="DukuShoppingPackage.dao.ShirtDao"%>
+<%@page import="DukuShoppingPackage.connection.DbCon"%>
 <%@page import="java.io.PrintWriter"%>
-<%@page import="shoppingpackage.model.*" %>
+<%@page import="DukuShoppingPackage.model.*" %>
 
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
@@ -27,10 +27,6 @@
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Expires", "0");
     
-    
-   
-    
-    DbCon db = new DbCon();
     ShirtDao sh = new ShirtDao();
     List<Shirt> shirts = sh.getAllShirts();
     
@@ -68,7 +64,7 @@
                                                 <h6 class="category">Category: <%= s.getShirtCategoryName() %></h6>
                                                 <div class="mt-3 d-flex justify-content-between">
                                                     <a href="add-to-cart?shirtID=<%= s.getShirtID() %>" class="btn btn-dark">Add to Cart</a>
-                                                    <a href="regLike" class="btn btn-primary">Like</a>
+                                                    <a href="regLike?shirtID=<%= s.getShirtID() %>" class="btn btn-primary">Like</a>
                                                     
                                                     
                                              </div>

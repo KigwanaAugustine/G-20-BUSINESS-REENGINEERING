@@ -8,11 +8,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%--<%@page import="shoppingpackage.model.*" %>--%>
 <%
-    Customer auth = (Customer) request.getSession().getAttribute("auth");
-    if(auth != null ){
-        request.setAttribute("auth", auth);
-       response.sendRedirect("index.jsp");
-    }
+    
+    session = request.getSession();
+    int customerID = 0;
+    
+    if(session.getAttribute("customerID") != null)
+      customerID = (int)session.getAttribute("customerID");
+   
     
 //        ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 //        if(cart_list != null){

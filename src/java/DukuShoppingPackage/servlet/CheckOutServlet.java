@@ -1,5 +1,5 @@
 
-package shoppingpackage.servlet;
+package DukuShoppingPackage.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,11 +11,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import shoppingpackage.connection.DbCon;
-import shoppingpackage.dao.OrderDao;
-import shoppingpackage.model.Cart;
-import shoppingpackage.model.CustomerModel;
-import shoppingpackage.model.Order;
+import DukuShoppingPackage.connection.DbCon;
+import DukuShoppingPackage.dao.OrderDao;
+import DukuShoppingPackage.model.Cart;
+import DukuShoppingPackage.model.CustomerModel;
+import DukuShoppingPackage.model.Order;
+import jakarta.servlet.http.HttpSession;
+import java.text.DateFormat;
 
 /**
  *
@@ -32,28 +34,36 @@ public class CheckOutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
             try(PrintWriter out = response.getWriter()){
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = new Date();
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+               String date = formatter.format(new Date(System.currentTimeMillis()));
                 
                 //retrieve all cart products
                 ArrayList<Cart> cart_list = (ArrayList<Cart>)request.getSession().getAttribute("cart-list");
                 
                 //User authentication
-                CustomerModel  customer = (CustomerModel)request.getSession().getAttribute("auth");
-                
+                HttpSession session = request.getSession();
+                int customerID = 0;
+    
+                if(session.getAttribute("customerID") == null)
+                 response.sendRedirect("login.jsp");
+                else
+                  customerID = (int)session.getAttribute("customerID");
+    
+                String username = (String) session.getAttribute("username");
+                 
                 //check auth and cart list
-                if (cart_list != null &&  customer != null){
+                if (cart_list != null ){
                     //prepare the order object
                     for(Cart c: cart_list){
                         Order order = new Order();
                         order.setShirtID(c.getShirtID());
-                        order.setCustomerID(customer.getCustomerID());
+                        order.setCustomerID(customerID);
                         order.setQuantity(c.getQuantity());
-                        order.setDate(formatter.format(date));
+                        order.setDate(date);
                         
                         //instantiate the dao class
-                        DbCon db = new DbCon();
-                        OrderDao oDao = new OrderDao(db.getConnection());
+                    
+                        OrderDao oDao = new OrderDao();
                         //calling the insert
                         boolean result = oDao.insertOrder(order);
                         if(!result) break; 
@@ -61,11 +71,12 @@ public class CheckOutServlet extends HttpServlet {
                     
                     cart_list.clear();
                     response.sendRedirect("orders.jsp");
-                }else{
-                    if(customer == null) response.sendRedirect("login.jsp");
-                        
-                        response.sendRedirect("cart.jsp");
                 }
+//                else{
+//                    if(customer == null) response.sendRedirect("login.jsp");
+//                        
+//                        response.sendRedirect("cart.jsp");
+//                }
             }catch(Exception e){
                 e.printStackTrace();
             }

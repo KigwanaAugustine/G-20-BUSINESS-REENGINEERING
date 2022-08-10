@@ -30,7 +30,7 @@ public class StaffReg extends HttpServlet
        staff.setAddress(request.getParameter("address"));
        staff.setSalary(Integer.parseInt(request.getParameter("salary")));
        staff.setSEmail(request.getParameter("sEmail"));
-       staff.setManagerID(Integer.parseInt(request.getParameter("managerID")));
+       //staff.setManagerID(Integer.parseInt(request.getParameter("managerID")));
        
       StaffDao sd = new StaffDao();
        

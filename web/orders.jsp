@@ -6,13 +6,17 @@
 
 <%@page import="java.util.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="shoppingpackage.model.*" %>
+<%@page import="DukuShoppingPackage.model.*" %>
 <%
-    CustomerModel auth = (CustomerModel) request.getSession().getAttribute("auth");
-    if(auth != null ){
-         request.setAttribute("auth", auth);
-//        response.sendRedirect("index.jsp");
-    }
+    session = request.getSession();
+    int customerID = 0;
+    
+    if(session.getAttribute("customerID") == null)
+     response.sendRedirect("login.jsp");
+    else
+      customerID = (int)session.getAttribute("customerID");
+    
+    String username = (String) session.getAttribute("username");
     
         ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
         if(cart_list != null){

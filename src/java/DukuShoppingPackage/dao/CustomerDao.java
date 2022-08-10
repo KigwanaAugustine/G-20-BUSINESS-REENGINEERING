@@ -1,15 +1,15 @@
 
-package shoppingpackage.dao;
+package DukuShoppingPackage.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;import java.sql.Statement;
 ;
-import shoppingpackage.model.CustomerModel;
-import shoppingpackage.model.CustomerModel;
-import shoppingpackage.model.Order;
-import shoppingpackage.model.CustomerModel;
-import shoppingpackage.model.CustomerModel;
+import DukuShoppingPackage.model.CustomerModel;
+import DukuShoppingPackage.model.CustomerModel;
+import DukuShoppingPackage.model.Order;
+import DukuShoppingPackage.model.CustomerModel;
+import DukuShoppingPackage.model.CustomerModel;
 
 public class CustomerDao {
             private Connection con;
